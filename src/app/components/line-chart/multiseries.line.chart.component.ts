@@ -4,10 +4,20 @@ import { Report } from './report';
 import { ReportService } from './report.service';
 
 @Component({
-  selector: 'app-index-label',
+  selector: 'app-chart',
   templateUrl: 'chart.component.html',
+  providers: [ReportService]
 })
 export class MultiseriesLineChartComponent {
+	reports: Report[] = [];
+
+	constructor(private reportService: ReportService) {}
+
+	// getReports(): void {
+	// 	this.reportService.getReport()
+	// 	  .subscribe(reports => (this.reports = reports));
+	// }
+
   	chartOptions = {
 		animationEnabled: true,
 		theme: "light2",
