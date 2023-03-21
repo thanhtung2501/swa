@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center">
+<form class="row md-3 d-flex align-items-end">
+    <div class="col-auto">
+      <label for="staticEmail2">Choose date</label>
+      <datepicker></datepicker>
+    </div>
+    <div class="col-auto">
+      <label for="inputPassword2">Start time</label>
+      <div class="default-time-example">
+        <input aria-label="default time" [ngxTimepicker]="defaultValue" [value]="startTime" 
+        readonly (timeChanged)="getTimeChanged($event)"  (opened)="openTime($event)">
+        <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
+    </div>
+    </div>
+    <div class="col-auto">
+        <label for="inputPassword2">End time</label>
+        <div class="default-time-example">
+          <input aria-label="default time" [ngxTimepicker]="defaultValue" [value]="endTime" 
+           readonly  >
+          <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button (click)="generateReport()" class="btn btn-primary mb-3">Generate report</button>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Download csv</button>
+      </div>
+  </form>
+  </div>

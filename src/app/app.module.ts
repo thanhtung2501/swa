@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
@@ -11,6 +14,9 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { MultiseriesLineChartComponent } from './components/line-chart/multiseries.line.chart.component';
+import {ReportFilter} from './components/filter-section/reportFilter.component';
+import { DatepickerComponent } from './components/material/datepicker/datepicker.component';
+import { MaterialExampleModule } from './components/material/datepicker/material.module';
 
 
 @NgModule({
@@ -21,14 +27,22 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: '', component: MultiseriesLineChartComponent },
-    ])
+    ]),
+    MaterialExampleModule,
+    BrowserAnimationsModule,
+    NgxMaterialTimepickerModule
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
     ProductListComponent,
     CanvasJSChart,
-    MultiseriesLineChartComponent
+    MultiseriesLineChartComponent,
+    ReportFilter,
+    DatepickerComponent,
+
+
+    
   ],
   bootstrap: [
     AppComponent
