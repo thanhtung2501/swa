@@ -5,8 +5,9 @@ import {Component, Output, Input, EventEmitter} from '@angular/core';
     templateUrl: 'reportFilter.component.html',
 })
 export class ReportFilter {
-    startTime: string = "05:30 pm";
-    endTime: string = "05:15 pm";
+    startTime: string = "00:00 am";
+    endTime: string = "00:00 am";
+    choosedDate: Date = new Date();
 
     constructor(){}
 
@@ -14,13 +15,15 @@ export class ReportFilter {
     timeSet: EventEmitter<string> = new EventEmitter<string>();
 
     generateReport() {
-        alert(this.startTime + this.endTime);
-        // alert(this.endTime);
+        alert(this.startTime + "  " + this.endTime + "  " + this.choosedDate);
     }
-    getTimeChanged(event: any){
-        console.log(event);
+    getStartTimeChanged(event: any){
+        this.startTime = event;
     }
-    openTime(event: any){
-        console.log(event);
+    getEndTimeChanged(event: any){
+        this.endTime = event;
+    }
+    getDateChanged(event: any){
+       this.choosedDate = event;
     }
 }
