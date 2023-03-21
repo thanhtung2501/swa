@@ -14,12 +14,10 @@ import { ReportService } from './report.service';
 export class MultiseriesLineChartComponent implements OnInit {
 	chart: any;
 	chartModel: ChartModel[] = [];
-	chartOptions = {};
 
 	constructor(private reportService: ReportService) {}
 
 	ngOnInit() {
-		// this.getReports();
 		this.chart = new CanvasJS.Chart("chartContainer", {
 			theme: "light1", // "light2", "dark1", "dark2"
 			title: {
@@ -41,7 +39,6 @@ export class MultiseriesLineChartComponent implements OnInit {
 		  .subscribe(data => {
 			reports = data;
 			this.chartModel = this.reportService.convertToChartModel(reports);
-			console.log(JSON.stringify(this.chartModel));
 			let chartOptionsData = JSON.parse(JSON.stringify(this.chartModel));
 			this.chart.options.data = chartOptionsData;
 			this.chart.render();
