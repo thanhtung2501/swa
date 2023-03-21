@@ -19,14 +19,14 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      // { path: '', component: ProductListComponent },
-      { path: '', component: MultiseriesLineChartComponent },
+      { path: '', component: ProductListComponent },
+      // { path: '', component: MultiseriesLineChartComponent },
     ])
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    // ProductListComponent,
+    ProductListComponent,
     CanvasJSChart,
     MultiseriesLineChartComponent
   ],
