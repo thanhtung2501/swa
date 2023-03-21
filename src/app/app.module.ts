@@ -20,7 +20,7 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
-      // { path: '', component: MultiseriesLineChartComponent },
+      { path: '', component: MultiseriesLineChartComponent },
     ])
   ],
   declarations: [
