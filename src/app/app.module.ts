@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientXsrfModule } from '@angular/common/http';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
@@ -13,6 +14,9 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { HttpErrorHandler } from './http-error-handler.service';
+import { MessageService } from './message.service';
+import { MessagesComponent } from './messages/messages.component';
 import { MultiseriesLineChartComponent } from './components/line-chart/multiseries.line.chart.component';
 import {ReportFilter} from './components/filter-section/reportFilter.component';
 import { DatepickerComponent } from './components/material/datepicker/datepicker.component';
@@ -24,6 +28,10 @@ import { MaterialExampleModule } from './components/material/datepicker/material
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    // HttpClientXsrfModule.withOptions({
+    //   cookieName: 'My-Xsrf-Cookie',
+    //   headerName: 'My-Xsrf-Header',
+    // }),
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: '', component: MultiseriesLineChartComponent },
@@ -40,9 +48,11 @@ import { MaterialExampleModule } from './components/material/datepicker/material
     MultiseriesLineChartComponent,
     ReportFilter,
     DatepickerComponent,
-
-
-    
+    MessagesComponent
+  ],
+  providers: [
+    HttpErrorHandler,
+    MessageService
   ],
   bootstrap: [
     AppComponent

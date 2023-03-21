@@ -1,7 +1,23 @@
 export interface Report {
-  id: number;
   topicName: string;
-  value: number;
-  timestamp: string;
+  data: ReportObj[]; 
 }
 
+export interface ReportObj {
+  id: number;
+  value: number;
+  timestamp: number;
+}
+
+export interface ChartModel {
+  type: string;
+  name: string;
+  showInLegend: boolean;
+  yValueFormatString: string;
+  dataPoints: ChartDTO[];
+}
+
+export interface ChartDTO {
+  x: number;
+  y: number;
+}
