@@ -27,8 +27,6 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
     //   headerName: 'My-Xsrf-Header',
     // }),
     RouterModule.forRoot([
-      // { path: '', component: ProductListComponent },
-      // { path: '', component: MultiseriesLineChartComponent }
     ])
   ],
   declarations: [
