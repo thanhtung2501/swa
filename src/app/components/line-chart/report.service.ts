@@ -54,26 +54,9 @@ export class ReportService {
             );
     }
 
-    generateCsv(topicName: string, from: number, to: number): Observable<any> {
-        let params = new HttpParams();
-        params = params.set('from', from);
-        params = params.set('to', to);
-        params = params.set('topicName', topicName);
-        // params = params.set('responseType', 'blob');
-
-        const headers = {
-            responseType: 'blob' as 'json'
-        };
-        // let headers = new HttpHeaders({
-        //     // 'Content-Type':  'application/json',
-        //     'responseType': 'blob' as 'json'
-        // });
-        const options = from && to ? { params: params, headers } : {};
-
-        return this.http.get<Blob>(this.csvReportUrl, options)
-            .pipe(
-                catchError(this.handleError('generateCsv', []))
-            );
+    generateCsv(topicName: string, from: number, to: number): void {
+        let csvDownloadUrl = this.csvReportUrl + '?from=' + from + '&to=' + to + '&topicName=' + topicName;
+        window.open(csvDownloadUrl, '_blank');
     }
 
     getTopics(): Observable<string[]> {

@@ -52,33 +52,7 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 	}
 
 	downloadCsv(topicName: string, startDatetime: number, endDateTime: number): void {
-		this.reportService
-			.generateCsv(topicName, startDatetime, endDateTime)
-			.subscribe(res => {
-				const downloadLink = document.createElement('a');
-
-				const data: Blob = new Blob([res], {
-					type: "text/csv;charset=utf-8"
-					// type: "application/ms-excel;charset=utf-8"
-				});
-
-				downloadLink.href = URL.createObjectURL(data);
-				console.log(res);
-				console.log(res.headers);
-				console.log(res.type);
-
-				const contentDisposition = res.headers.get('content-disposition');
-				const fileName = contentDisposition.split(';')[1].split('filename')[1].split('=')[1].trim();
-				downloadLink.download = fileName;
-				// downloadLink.download = 'report.csv';
-				downloadLink.click();
-
-				// let downloadURL = window.URL.createObjectURL(data);
-				// let link = document.createElement('a');
-				// link.href = downloadURL;
-				// link.download = "report.csv";
-				// link.click();
-			});
+		this.reportService.generateCsv(topicName, startDatetime, endDateTime);
 	}
 
 	getReportByTimeRange(topicName: string, startDatetime: number, endDateTime: number): void {
