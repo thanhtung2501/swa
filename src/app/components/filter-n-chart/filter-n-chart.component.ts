@@ -21,7 +21,7 @@ export class FilterNChartComponent implements OnInit {
 
   constructor(){
     this.topicName = "";
-    this.startOnlyTime = new Date().getHours()+":"+(new Date().getMinutes()-5);
+    this.startOnlyTime = new Date().getHours()+":"+(new Date().getMinutes());
     this.endOnlyTime = new Date().getHours()+":"+new Date().getMinutes();
   }
   
