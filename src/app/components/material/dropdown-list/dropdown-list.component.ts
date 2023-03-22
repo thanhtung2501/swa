@@ -21,7 +21,6 @@ export class DropdownListComponent implements OnInit {
   getTopics(): void {
 		this.reportService.getTopics().subscribe(data => {
 			this.topics = data;
-			console.log(this.topics);
 		});
 	}
 
