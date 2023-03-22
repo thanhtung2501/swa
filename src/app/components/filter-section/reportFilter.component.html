@@ -7,14 +7,14 @@
     <div class="col-auto">
       <label for="inputPassword2">Start time</label>
       <div class="default-time-example">
-        <input aria-label="default time" [ngxTimepicker]="defaultValue1" [value]="startTime" readonly>
+        <input aria-label="default time" [format]="24" [ngxTimepicker]="defaultValue1" [value]="startTime" readonly>
         <ngx-material-timepicker #defaultValue1 (timeSet)="getStartTimeChanged($event)"></ngx-material-timepicker>
     </div>
     </div>
     <div class="col-auto">
         <label for="inputPassword2">End time</label>
         <div class="default-time-example">
-          <input aria-label="default time" [ngxTimepicker]="defaultValue" [value]="endTime" 
+          <input aria-label="default time" [format]="24"  [ngxTimepicker]="defaultValue" [value]="endTime" 
            readonly  >
           <ngx-material-timepicker #defaultValue (timeSet)="getEndTimeChanged($event)"></ngx-material-timepicker>
       </div>
@@ -23,7 +23,7 @@
       <button (click)="generateReport()" class="btn btn-primary mb-3">Generate report</button>
     </div>
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Download csv</button>
+        <button (click)="downloadCsv()" class="btn btn-primary mb-3">Download csv</button>
       </div>
   </form>
   </div>

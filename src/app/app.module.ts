@@ -21,6 +21,7 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
 import {ReportFilter} from './components/filter-section/reportFilter.component';
 import { DatepickerComponent } from './components/material/datepicker/datepicker.component';
 import { MaterialExampleModule } from './components/material/datepicker/material.module';
+import { FilterNChartComponent } from './components/filter-n-chart/filter-n-chart.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { MaterialExampleModule } from './components/material/datepicker/material
     MultiseriesLineChartComponent,
     ReportFilter,
     DatepickerComponent,
-    MessagesComponent
+    MessagesComponent,
+    FilterNChartComponent
   ],
   providers: [
     HttpErrorHandler,
