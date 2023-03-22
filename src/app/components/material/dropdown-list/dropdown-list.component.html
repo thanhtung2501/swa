@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill">
     <mat-label>Choose topic name</mat-label>
-    <mat-select>
+    <mat-select (selectionChange)="getTopicChange($event)">
       <mat-option *ngFor="let topic of topics" [value]="topic">
         {{topic}}
       </mat-option>

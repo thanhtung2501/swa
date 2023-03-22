@@ -8,10 +8,10 @@ import { TopicFilter } from '../../model/topicFilter';
 })
 export class ReportFilter implements OnInit {
     @Input()
-    topicName: string = ""
+    topicName: string = "";
 
     @Input()
-    startTime: string = "00:00"
+    startTime: string = "00:00";
 
     @Input()
     endTime: string = "00:00";

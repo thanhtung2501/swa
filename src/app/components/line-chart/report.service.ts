@@ -19,12 +19,9 @@ const httpOptions = {
 export class ReportService {
     baseUrl = 'http://10.200.9.75:8081/report';
 
-    byTimeRangeUrl = this.baseUrl + '/time';
-    byTopicAndTimeRangeUrl = this.baseUrl + '/{topicName}/time';
+    byTimeRangeUrl = this.baseUrl + '/';
     byTopicUrl = this.baseUrl + '/topic/';
     topicsUrl = this.baseUrl + '/topics';
-
-    reportUrl = 'http://10.200.9.75:8081/report/time?from=1679361670714&to=1689364671719';
 
     private handleError: HandleError;
 
@@ -41,6 +38,8 @@ export class ReportService {
         params = params.set('topicName', topicName);
 
         const options = from && to ? { params: params } : {};
+        console.log(this.byTimeRangeUrl);
+        console.log(options);
 
         return this.http.get<Report[]>(this.byTimeRangeUrl, options)
             .pipe(
@@ -82,7 +81,7 @@ export class ReportService {
                 type: "line",
                 name: item.topicName,
                 showInLegend: true,
-                yValueFormatString: "#,###°F",
+                yValueFormatString: "#,###",
                 dataPoints: dataPoints
             };
 
