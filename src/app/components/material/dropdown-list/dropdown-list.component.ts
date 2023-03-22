@@ -29,8 +29,9 @@ export class DropdownListComponent implements OnInit {
   }
 
   getTopicChange(event: any) {
-    if(event == this.topics[0]){
-      this.getTopicName.emit();
+    console.log(event);
+    if(event.value == this.topics[0]){
+      this.getTopicName.emit("");
     } else {
       this.getTopicName.emit(event.value);
     }

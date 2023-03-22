@@ -5,8 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { HttpClientXsrfModule } from '@angular/common/http';
-
+import { DatePipe } from '@angular/common';
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
@@ -52,6 +51,7 @@ import { DropdownListComponent } from './components/material/dropdown-list/dropd
   ],
   providers: [
     HttpErrorHandler,
+    DatePipe,
     MessageService
   ],
   bootstrap: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-
+import { DatePipe } from '@angular/common';
 
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -28,6 +28,7 @@ export class ReportService {
 
     constructor(
         private http: HttpClient,
+        private datePipe: DatePipe,
         httpErrorHandler: HttpErrorHandler) {
         this.handleError = httpErrorHandler.createHandleError('ReportService');
     }
@@ -74,7 +75,8 @@ export class ReportService {
 
             for (let dataItem of item.data) {
                 let chartDTO: ChartDTO = {
-                    x: dataItem.timestamp,
+                    // x: dataItem.timestamp,
+                    label: this.datePipe.transform(dataItem.timestamp, 'HH:mm:ss'),
                     y: dataItem.value
                 };
 

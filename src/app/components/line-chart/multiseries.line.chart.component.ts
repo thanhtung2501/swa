@@ -36,7 +36,7 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 		this.chart = new CanvasJS.Chart("chartContainer", {
 			theme: "light1", // "light2", "dark1", "dark2"
 			title: {
-				text: "Report Service"
+				text: "Reporting Service"
 			},
 			data: [
 				{

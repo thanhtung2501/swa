@@ -18,6 +18,7 @@ export interface ChartModel {
 }
 
 export interface ChartDTO {
-  x: number;
+  // x: number;
+  label: string | null;
   y: number;
 }
