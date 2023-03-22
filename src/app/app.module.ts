@@ -22,6 +22,7 @@ import {ReportFilter} from './components/filter-section/reportFilter.component';
 import { DatepickerComponent } from './components/material/datepicker/datepicker.component';
 import { MaterialExampleModule } from './components/material/datepicker/material.module';
 import { FilterNChartComponent } from './components/filter-n-chart/filter-n-chart.component';
+import { DropdownListComponent } from './components/material/dropdown-list/dropdown-list.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { FilterNChartComponent } from './components/filter-n-chart/filter-n-char
     ReportFilter,
     DatepickerComponent,
     MessagesComponent,
-    FilterNChartComponent
+    FilterNChartComponent,
+    DropdownListComponent
   ],
   providers: [
     HttpErrorHandler,

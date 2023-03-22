@@ -1,5 +1,5 @@
 export interface TopicFilter{
-    startDateTime: Number;
-    endDateTime: Number;
+    startDateTime: number;
+    endDateTime: number;
     actionType: String
 }

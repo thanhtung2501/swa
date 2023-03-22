@@ -1,17 +1,22 @@
-import {Component, Output, Input, EventEmitter} from '@angular/core';
+import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
 import { TopicFilter } from '../../model/topicFilter';
 
 @Component({
     selector: 'report-filter',
     templateUrl: 'reportFilter.component.html',
 })
-export class ReportFilter {
-    startTime: string = "00:00";
+export class ReportFilter implements OnInit {
+    @Input()
+    startTime: string = "00:00"
+    @Input()
     endTime: string = "00:00";
+    @Input()
     choosedDate: Date = new Date();
 
-
-    constructor(){}
+    ngOnInit(): void {
+        
+        
+    }
 
     @Output()
     getFilterCondition: EventEmitter<TopicFilter> = new EventEmitter<TopicFilter>();

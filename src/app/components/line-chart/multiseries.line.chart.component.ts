@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import * as CanvasJSAngularChart from '../../../assets/canvasjs.angular.component';
 var CanvasJS = CanvasJSAngularChart.CanvasJS;
 
 import { ChartModel, Report } from './report';
 import { ReportService } from './report.service';
+import { TopicFilter } from '../../model/topicFilter';
 
 @Component({
   selector: 'app-chart',
   templateUrl: 'chart.component.html',
   providers: [ReportService]
 })
-export class MultiseriesLineChartComponent implements OnInit {
+export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 	chart: any;
 	chartModel: ChartModel[] = [];
 	topics: string[] = [];
 
-	constructor(private reportService: ReportService) {}
+	@Input()
+	topicFilter: TopicFilter = {} as TopicFilter;
+
+	constructor(private reportService: ReportService) {
+		
+	}
+	ngOnChanges(changes: SimpleChanges): void {
+		if (this.topicFilter.actionType == "GenerateReport"){
+			this.getReportByTimeRange(this.topicFilter.startDateTime, this.topicFilter.endDateTime);
+		  }
+	}
 
 	ngOnInit() {
 		this.getTopics();
@@ -34,10 +45,15 @@ export class MultiseriesLineChartComponent implements OnInit {
 			]
 		  });
 		  this.chart.render();
+		  if (this.topicFilter.actionType == "GenerateReport"){
+			this.getReportByTimeRange(this.topicFilter.startDateTime, this.topicFilter.endDateTime);
+		  }
+		 
 	}
 
-	getReportByTimeRange(): void {
-		this.reportService.getReportByTimeRange(1679361670714, 1689364671719)
+	getReportByTimeRange(startDatetime: number, endDateTime: number): void {
+		// this.reportService.getReportByTimeRange(1679361670714, 1689364671719)
+		this.reportService.getReportByTimeRange(startDatetime, endDateTime)
 		  .subscribe(data => {
 			this.updateChart(data);
 		  });
