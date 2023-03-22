@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 
 import * as CanvasJSAngularChart from '../../../assets/canvasjs.angular.component';
 var CanvasJS = CanvasJSAngularChart.CanvasJS;
@@ -44,10 +45,15 @@ export class MultiseriesLineChartComponent implements OnInit {
 	}
 
 	getTopics(): void {
-		let topics: string[] = [];
 		this.reportService.getTopics().subscribe(data => {
-			topics = data;
+			this.topics = data;
+			console.log(this.topics);
 		});
+	}
+
+	loadTopics(): string[] {
+		console.log(this.topics);
+		return this.topics;
 	}
 
 	updateChart(reports: Report[]): void {

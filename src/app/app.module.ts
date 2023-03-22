@@ -33,8 +33,7 @@ import { MaterialExampleModule } from './components/material/datepicker/material
     //   headerName: 'My-Xsrf-Header',
     // }),
     RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      { path: '', component: MultiseriesLineChartComponent },
+      { path: 'chart', component: MultiseriesLineChartComponent }
     ]),
     MaterialExampleModule,
     BrowserAnimationsModule,
