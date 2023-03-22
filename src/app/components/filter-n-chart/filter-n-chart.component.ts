@@ -7,21 +7,24 @@ import { TopicFilter } from '../../model/topicFilter';
   styleUrls: ['./filter-n-chart.component.css']
 })
 export class FilterNChartComponent implements OnInit {
-
-  startOnlyTime: string = ""
-  endOnlyTime: string = ""
+  topicName: string = "";
+  startOnlyTime: string = "";
+  endOnlyTime: string = "";
   choosedOnlyDate: Date = new Date();
 
   topicFilter: TopicFilter = {
+    topicName: "",
     startDateTime: 0,
     endDateTime: 0,
     actionType: ""
   }
 
   constructor(){
+    this.topicName = "";
     this.startOnlyTime = new Date().getHours()+":"+(new Date().getMinutes()-5);
     this.endOnlyTime = new Date().getHours()+":"+new Date().getMinutes();
   }
+  
   ngOnInit(): void {
     
   }

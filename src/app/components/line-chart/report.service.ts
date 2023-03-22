@@ -20,6 +20,7 @@ export class ReportService {
     baseUrl = 'http://10.200.9.75:8081/report';
 
     byTimeRangeUrl = this.baseUrl + '/time';
+    byTopicAndTimeRangeUrl = this.baseUrl + '/{topicName}/time';
     byTopicUrl = this.baseUrl + '/topic/';
     topicsUrl = this.baseUrl + '/topics';
 
@@ -33,10 +34,11 @@ export class ReportService {
         this.handleError = httpErrorHandler.createHandleError('ReportService');
     }
 
-    getReportByTimeRange(from: number, to: number): Observable<Report[]> {
+    getReportByTimeRange(topicName: string, from: number, to: number): Observable<Report[]> {
         let params = new HttpParams();
         params = params.set('from', from);
         params = params.set('to', to);
+        params = params.set('topicName', topicName);
 
         const options = from && to ? { params: params } : {};
 

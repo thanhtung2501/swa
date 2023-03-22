@@ -23,9 +23,10 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 	constructor(private reportService: ReportService) {
 		
 	}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		if (this.topicFilter.actionType == "GenerateReport"){
-			this.getReportByTimeRange(this.topicFilter.startDateTime, this.topicFilter.endDateTime);
+			this.getReportByTimeRange(this.topicFilter.topicName, this.topicFilter.startDateTime, this.topicFilter.endDateTime);
 		  }
 	}
 
@@ -44,14 +45,12 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 		  });
 		  this.chart.render();
 		  if (this.topicFilter.actionType == "GenerateReport"){
-			this.getReportByTimeRange(this.topicFilter.startDateTime, this.topicFilter.endDateTime);
+			this.getReportByTimeRange(this.topicFilter.topicName, this.topicFilter.startDateTime, this.topicFilter.endDateTime);
 		  }
-		 
 	}
 
-	getReportByTimeRange(startDatetime: number, endDateTime: number): void {
-		// this.reportService.getReportByTimeRange(1679361670714, 1689364671719)
-		this.reportService.getReportByTimeRange(startDatetime, endDateTime)
+	getReportByTimeRange(topicName: string, startDatetime: number, endDateTime: number): void {
+		this.reportService.getReportByTimeRange(topicName, startDatetime, endDateTime)
 		  .subscribe(data => {
 			this.updateChart(data);
 		  });

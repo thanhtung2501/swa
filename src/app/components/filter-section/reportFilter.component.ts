@@ -8,15 +8,18 @@ import { TopicFilter } from '../../model/topicFilter';
 })
 export class ReportFilter implements OnInit {
     @Input()
+    topicName: string = ""
+
+    @Input()
     startTime: string = "00:00"
+
     @Input()
     endTime: string = "00:00";
+    
     @Input()
     choosedDate: Date = new Date();
 
     ngOnInit(): void {
-        
-        
     }
 
     @Output()
@@ -29,7 +32,8 @@ export class ReportFilter implements OnInit {
         let obj: TopicFilter = {
             startDateTime: startDT.getTime(),
             endDateTime: endDT.getTime(),
-            actionType: ""
+            actionType: "",
+            topicName: this.topicName
         };
         return obj;
     }
@@ -39,22 +43,29 @@ export class ReportFilter implements OnInit {
         obj.actionType = "GenerateReport";
         this.getFilterCondition.emit(obj);
     }
+
     downloadCsv(){
         let obj = this.getTopicFilter();
         obj.actionType = "DownloadCsv";
         this.getFilterCondition.emit(obj);
     }
 
-
     getStartTimeChanged(event: any){
         this.startTime = event;
     }
+
     getEndTimeChanged(event: any){
         this.endTime = event;
     }
+    
     getDateChanged(event: any){
        this.choosedDate = event;
     }
+
+    getTopicChanged(event: any){
+        this.topicName = event;
+    }
+    
     getDateTimeFromDateNTime(date: Date, time: String){
         var timeTokens = time.split(':');
         return new Date(date.getFullYear(),date.getMonth(),date.getDate(), parseInt(timeTokens[0]), parseInt(timeTokens[1]), 0);
