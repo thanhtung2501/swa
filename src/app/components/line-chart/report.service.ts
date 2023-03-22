@@ -39,8 +39,6 @@ export class ReportService {
         params = params.set('topicName', topicName);
 
         const options = from && to ? { params: params } : {};
-        console.log(this.byTimeRangeUrl);
-        console.log(JSON.stringify(options));
 
         return this.http.get<Report[]>(this.byTimeRangeUrl, options)
             .pipe(
@@ -63,16 +61,16 @@ export class ReportService {
         params = params.set('topicName', topicName);
         // params = params.set('responseType', 'blob');
 
-        const httpOptions = {
+        const headers = {
             responseType: 'blob' as 'json'
         };
-        // let headers: new HttpHeaders({
-        //     'Content-Type':  'application/json',
-        //     'responseType': 'text'
+        // let headers = new HttpHeaders({
+        //     // 'Content-Type':  'application/json',
+        //     'responseType': 'blob' as 'json'
         // });
-        const options = from && to ? { params: params, httpOptions } : {};
+        const options = from && to ? { params: params, headers } : {};
 
-        return this.http.get(this.csvReportUrl, options)
+        return this.http.get<Blob>(this.csvReportUrl, options)
             .pipe(
                 catchError(this.handleError('generateCsv', []))
             );
