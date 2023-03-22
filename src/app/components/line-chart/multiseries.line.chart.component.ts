@@ -69,9 +69,11 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 
 	getReportByTimeRange(topicName: string, startDatetime: number, endDateTime: number): void {
 		this.reportService.getReportByTimeRange(topicName, startDatetime, endDateTime)
-			.subscribe(data => {
+		  .subscribe(data => {
+			if (data.length > 0){
 				this.updateChart(data);
-			});
+			}
+		  });
 	}
 
 	updateChart(reports: Report[]): void {
