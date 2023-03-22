@@ -35,8 +35,7 @@ import { DropdownListComponent } from './components/material/dropdown-list/dropd
     //   headerName: 'My-Xsrf-Header',
     // }),
     RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      { path: '', component: MultiseriesLineChartComponent },
+      { path: 'chart', component: MultiseriesLineChartComponent }
     ]),
     MaterialExampleModule,
     BrowserAnimationsModule,
