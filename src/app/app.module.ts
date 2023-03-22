@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientXsrfModule } from '@angular/common/http';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
@@ -15,6 +18,9 @@ import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MultiseriesLineChartComponent } from './components/line-chart/multiseries.line.chart.component';
+import {ReportFilter} from './components/filter-section/reportFilter.component';
+import { DatepickerComponent } from './components/material/datepicker/datepicker.component';
+import { MaterialExampleModule } from './components/material/datepicker/material.module';
 
 
 @NgModule({
@@ -27,7 +33,12 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
     //   headerName: 'My-Xsrf-Header',
     // }),
     RouterModule.forRoot([
-    ])
+      { path: '', component: ProductListComponent },
+      { path: '', component: MultiseriesLineChartComponent },
+    ]),
+    MaterialExampleModule,
+    BrowserAnimationsModule,
+    NgxMaterialTimepickerModule
   ],
   declarations: [
     AppComponent,
@@ -35,6 +46,8 @@ import { MultiseriesLineChartComponent } from './components/line-chart/multiseri
     ProductListComponent,
     CanvasJSChart,
     MultiseriesLineChartComponent,
+    ReportFilter,
+    DatepickerComponent,
     MessagesComponent
   ],
   providers: [
