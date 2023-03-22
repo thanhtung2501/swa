@@ -17,9 +17,14 @@ const httpOptions = {
 
 @Injectable()
 export class ReportService {
-    dataUrl = 'assets/data.json';
+    baseUrl = 'http://10.200.9.75:8081/report';
+
+    byTimeRangeUrl = this.baseUrl + '/time';
+    byTopicUrl = this.baseUrl + '/topic/';
+    topicsUrl = this.baseUrl + '/topics';
 
     reportUrl = 'http://10.200.9.75:8081/report/time?from=1679361670714&to=1689364671719';
+
     private handleError: HandleError;
 
     constructor(
@@ -28,10 +33,31 @@ export class ReportService {
         this.handleError = httpErrorHandler.createHandleError('ReportService');
     }
 
-    getReport(): Observable<Report[]> {
-        return this.http.get<Report[]>(this.reportUrl)
+    getReportByTimeRange(from: number, to: number): Observable<Report[]> {
+        let params = new HttpParams();
+        params = params.set('from', from);
+        params = params.set('to', to);
+
+        const options = from && to ? { params: params } : {};
+
+        return this.http.get<Report[]>(this.byTimeRangeUrl, options)
             .pipe(
-                catchError(this.handleError('getReport', []))
+                catchError(this.handleError('getReportByTimeRange', []))
+            );
+    }
+
+    getReportByTopic(topicName: string): Observable<Report[]> {
+        let url = this.byTopicUrl + topicName;
+        return this.http.get<Report[]>(url)
+            .pipe(
+                catchError(this.handleError('getReportByTopic', []))
+            );
+    }
+
+    getTopics(): Observable<string[]> {
+        return this.http.get<string[]>(this.topicsUrl)
+            .pipe(
+                catchError(this.handleError('getTopics', []))
             );
     }
 
@@ -45,7 +71,7 @@ export class ReportService {
                 let chartDTO: ChartDTO = {
                     x: dataItem.timestamp,
                     y: dataItem.value
-                }
+                };
 
                 dataPoints.push(chartDTO);
             }
