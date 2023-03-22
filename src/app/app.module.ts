@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientXsrfModule } from '@angular/common/http';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
@@ -13,7 +12,6 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
@@ -44,7 +42,6 @@ import { DropdownListComponent } from './components/material/dropdown-list/dropd
   declarations: [
     AppComponent,
     TopBarComponent,
-    ProductListComponent,
     CanvasJSChart,
     MultiseriesLineChartComponent,
     ReportFilter,
