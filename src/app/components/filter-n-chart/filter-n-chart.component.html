@@ -1,0 +1,6 @@
+<report-filter (getFilterCondition)="getTopicFilterCondition($event)"
+[startTime]="startOnlyTime"
+[endTime]="endOnlyTime"
+[choosedDate]="choosedOnlyDate"
+></report-filter>
+<app-chart [topicFilter]="topicFilter"></app-chart>

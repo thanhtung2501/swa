@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+    <mat-label>Topic name</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let topic of topics" [value]="topic">
+        {{topic}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>

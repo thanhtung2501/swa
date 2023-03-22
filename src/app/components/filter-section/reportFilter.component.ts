@@ -1,26 +1,61 @@
-import {Component, Output, Input, EventEmitter} from '@angular/core';
+import {Component, Output, Input, EventEmitter, OnInit} from '@angular/core';
+import { TopicFilter } from '../../model/topicFilter';
 
 @Component({
     selector: 'report-filter',
     templateUrl: 'reportFilter.component.html',
 })
-export class ReportFilter {
-    startTime: string = "05:30 pm";
-    endTime: string = "05:15 pm";
+export class ReportFilter implements OnInit {
+    @Input()
+    startTime: string = "00:00"
+    @Input()
+    endTime: string = "00:00";
+    @Input()
+    choosedDate: Date = new Date();
 
-    constructor(){}
+    ngOnInit(): void {
+        
+        
+    }
 
     @Output()
-    timeSet: EventEmitter<string> = new EventEmitter<string>();
+    getFilterCondition: EventEmitter<TopicFilter> = new EventEmitter<TopicFilter>();
+
+    getTopicFilter(){
+        let startDT = this.getDateTimeFromDateNTime(this.choosedDate, this.startTime);
+        let endDT = this.getDateTimeFromDateNTime(this.choosedDate, this.endTime);
+
+        let obj: TopicFilter = {
+            startDateTime: startDT.getTime(),
+            endDateTime: endDT.getTime(),
+            actionType: ""
+        };
+        return obj;
+    }
 
     generateReport() {
-        alert(this.startTime + this.endTime);
-        // alert(this.endTime);
+        let obj = this.getTopicFilter();
+        obj.actionType = "GenerateReport";
+        this.getFilterCondition.emit(obj);
     }
-    getTimeChanged(event: any){
-        console.log(event);
+    downloadCsv(){
+        let obj = this.getTopicFilter();
+        obj.actionType = "DownloadCsv";
+        this.getFilterCondition.emit(obj);
     }
-    openTime(event: any){
-        console.log(event);
+
+
+    getStartTimeChanged(event: any){
+        this.startTime = event;
+    }
+    getEndTimeChanged(event: any){
+        this.endTime = event;
+    }
+    getDateChanged(event: any){
+       this.choosedDate = event;
+    }
+    getDateTimeFromDateNTime(date: Date, time: String){
+        var timeTokens = time.split(':');
+        return new Date(date.getFullYear(),date.getMonth(),date.getDate(), parseInt(timeTokens[0]), parseInt(timeTokens[1]), 0);
     }
 }
