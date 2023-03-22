@@ -30,8 +30,6 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 	}
 
 	ngOnInit() {
-		this.getTopics();
-
 		this.chart = new CanvasJS.Chart("chartContainer", {
 			theme: "light1", // "light2", "dark1", "dark2"
 			title: {
@@ -57,18 +55,6 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 		  .subscribe(data => {
 			this.updateChart(data);
 		  });
-	}
-
-	getTopics(): void {
-		this.reportService.getTopics().subscribe(data => {
-			this.topics = data;
-			console.log(this.topics);
-		});
-	}
-
-	loadTopics(): string[] {
-		console.log(this.topics);
-		return this.topics;
 	}
 
 	updateChart(reports: Report[]): void {

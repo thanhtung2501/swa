@@ -4,6 +4,7 @@ import { TopicFilter } from '../../model/topicFilter';
 @Component({
     selector: 'report-filter',
     templateUrl: 'reportFilter.component.html',
+    styleUrls: ['./reportFilter.component.css']
 })
 export class ReportFilter implements OnInit {
     @Input()

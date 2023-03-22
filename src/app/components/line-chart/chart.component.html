@@ -1,12 +1,1 @@
 <div id="chartContainer" style="height: 370px; width: 100%; margin:auto;"></div>
-<div>
-	<mat-form-field appearance="fill">
-		<mat-label>Topic name</mat-label>
-		<mat-select (click)="loadTopics()">
-		  <mat-option *ngFor="let topic of topics" [value]="topic">
-			{{topic}}
-		  </mat-option>
-		</mat-select>
-	  </mat-form-field>
-	<!-- <button (click)="getReportByTimeRange()">Update chart</button> -->
-</div>

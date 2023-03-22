@@ -4,6 +4,7 @@
       <label for="staticEmail2">Choose date</label>
       <datepicker (getDate)="getDateChanged($event)"></datepicker>
     </div>
+
     <div class="col-auto">
       <label for="inputPassword2">Start time</label>
       <div class="default-time-example">
@@ -11,6 +12,7 @@
         <ngx-material-timepicker #defaultValue1 (timeSet)="getStartTimeChanged($event)"></ngx-material-timepicker>
       </div>
     </div>
+    
     <div class="col-auto">
       <label for="inputPassword2">End time</label>
       <div class="default-time-example">
@@ -18,13 +20,12 @@
         <ngx-material-timepicker #defaultValue (timeSet)="getEndTimeChanged($event)"></ngx-material-timepicker>
       </div>
     </div>
-  </div>
-  <div class="row">
+
+
     <div class="col-auto">
       <dropdown-list></dropdown-list>
     </div>
-  </div>
-  <div class="row md-3 d-flex align-items-end">
+
     <div class="col-auto">
       <button (click)="generateReport()" class="btn btn-primary mb-3">Generate report</button>
     </div>
