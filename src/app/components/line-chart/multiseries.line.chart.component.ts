@@ -8,9 +8,9 @@ import { ReportService } from './report.service';
 import { TopicFilter } from '../../model/topicFilter';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: 'chart.component.html',
-  providers: [ReportService]
+	selector: 'app-chart',
+	templateUrl: 'chart.component.html',
+	providers: [ReportService]
 })
 export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 	chart: any;
@@ -21,39 +21,57 @@ export class MultiseriesLineChartComponent implements OnInit, OnChanges {
 	topicFilter: TopicFilter = {} as TopicFilter;
 
 	constructor(private reportService: ReportService) {
-		
+
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		if (this.topicFilter.actionType == "GenerateReport"){
+		if (this.topicFilter.actionType == "GenerateReport") {
 			this.getReportByTimeRange(this.topicFilter.topicName, this.topicFilter.startDateTime, this.topicFilter.endDateTime);
-		  }
+		} else if (this.topicFilter.actionType == "DownloadCsv") {
+			this.downloadCsv(this.topicFilter.topicName, this.topicFilter.startDateTime, this.topicFilter.endDateTime);
+		}
 	}
 
 	ngOnInit() {
 		this.chart = new CanvasJS.Chart("chartContainer", {
 			theme: "light1", // "light2", "dark1", "dark2"
 			title: {
-			  text: "Report Service"
+				text: "Report Service"
 			},
 			data: [
-			  {
-				type: "line", // Change type to "bar", "area", "spline", "pie",etc.
-				dataPoints: []
-			  }
+				{
+					type: "line", // Change type to "bar", "area", "spline", "pie",etc.
+					dataPoints: []
+				}
 			]
-		  });
-		  this.chart.render();
-		  if (this.topicFilter.actionType == "GenerateReport"){
+		});
+		this.chart.render();
+		if (this.topicFilter.actionType == "GenerateReport") {
 			this.getReportByTimeRange(this.topicFilter.topicName, this.topicFilter.startDateTime, this.topicFilter.endDateTime);
-		  }
+		}
+	}
+
+	downloadCsv(topicName: string, startDatetime: number, endDateTime: number): void {
+		this.reportService
+			.generateCsv(topicName, startDatetime, endDateTime)
+			.subscribe(res => {
+				const data: Blob = new Blob([res], {
+					type: "text/csv;charset=utf-8"
+				});
+
+				let downloadURL = window.URL.createObjectURL(data);
+				let link = document.createElement('a');
+				link.href = downloadURL;
+				link.download = "report.csv";
+				link.click();
+			});
 	}
 
 	getReportByTimeRange(topicName: string, startDatetime: number, endDateTime: number): void {
 		this.reportService.getReportByTimeRange(topicName, startDatetime, endDateTime)
-		  .subscribe(data => {
-			this.updateChart(data);
-		  });
+			.subscribe(data => {
+				this.updateChart(data);
+			});
 	}
 
 	updateChart(reports: Report[]): void {

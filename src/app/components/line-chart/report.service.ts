@@ -22,6 +22,7 @@ export class ReportService {
     byTimeRangeUrl = this.baseUrl + '/';
     byTopicUrl = this.baseUrl + '/topic/';
     topicsUrl = this.baseUrl + '/topics';
+    csvReportUrl = this.baseUrl + '/csv';
 
     private handleError: HandleError;
 
@@ -39,7 +40,7 @@ export class ReportService {
 
         const options = from && to ? { params: params } : {};
         console.log(this.byTimeRangeUrl);
-        console.log(options);
+        console.log(JSON.stringify(options));
 
         return this.http.get<Report[]>(this.byTimeRangeUrl, options)
             .pipe(
@@ -52,6 +53,28 @@ export class ReportService {
         return this.http.get<Report[]>(url)
             .pipe(
                 catchError(this.handleError('getReportByTopic', []))
+            );
+    }
+
+    generateCsv(topicName: string, from: number, to: number): Observable<any> {
+        let params = new HttpParams();
+        params = params.set('from', from);
+        params = params.set('to', to);
+        params = params.set('topicName', topicName);
+        // params = params.set('responseType', 'blob');
+
+        const httpOptions = {
+            responseType: 'blob' as 'json'
+        };
+        // let headers: new HttpHeaders({
+        //     'Content-Type':  'application/json',
+        //     'responseType': 'text'
+        // });
+        const options = from && to ? { params: params, httpOptions } : {};
+
+        return this.http.get(this.csvReportUrl, options)
+            .pipe(
+                catchError(this.handleError('generateCsv', []))
             );
     }
 
