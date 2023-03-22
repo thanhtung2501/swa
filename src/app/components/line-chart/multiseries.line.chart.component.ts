@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
-=======
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
->>>>>>> thao
 
 import * as CanvasJSAngularChart from '../../../assets/canvasjs.angular.component';
 var CanvasJS = CanvasJSAngularChart.CanvasJS;
