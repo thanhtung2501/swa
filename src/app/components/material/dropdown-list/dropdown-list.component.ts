@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { TopicFilter } from 'src/app/model/topicFilter';
 import { ReportService } from './../../line-chart/report.service';
 
 @Component({
@@ -9,13 +8,15 @@ import { ReportService } from './../../line-chart/report.service';
   providers: [ReportService]
 })
 export class DropdownListComponent implements OnInit {
-  topics: string[] = [];
+  topics: string[] = ["Choose topic name"];
+  chooseTopic: string = "";
 
   @Output()
   getTopicName: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.getTopics();
+    this.chooseTopic = this.topics[0];
   }
 
   constructor(private reportService: ReportService) {
@@ -23,12 +24,18 @@ export class DropdownListComponent implements OnInit {
 
   getTopics(): void {
     this.reportService.getTopics().subscribe(data => {
-      this.topics = data;
+      this.topics.push(...data);
     });
   }
 
   getTopicChange(event: any) {
-    this.getTopicName.emit(event.value);
+    if(event == this.topics[0]){
+      this.getTopicName.emit();
+    } else {
+      this.getTopicName.emit(event.value);
+    }
+    
+    
   }
 
 }
